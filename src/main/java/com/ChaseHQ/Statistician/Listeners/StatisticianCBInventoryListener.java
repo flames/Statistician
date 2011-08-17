@@ -1,7 +1,6 @@
 package com.ChaseHQ.Statistician.Listeners;
 
-import org.bukkitcontrib.event.inventory.InventoryCraftEvent;
-import org.bukkitcontrib.event.inventory.InventoryListener;
+import org.getspout.spoutapi.event.inventory.*;
 
 import com.ChaseHQ.Statistician.EventDataHandlers.EDHPlayer;
 

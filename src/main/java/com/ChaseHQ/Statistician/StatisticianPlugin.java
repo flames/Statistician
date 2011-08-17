@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkitcontrib.BukkitContrib;
+import org.getspout.spoutapi.*;
 
 import com.ChaseHQ.Statistician.Config.Config;
 import com.ChaseHQ.Statistician.Config.PackedDependencyVersions;
@@ -34,7 +34,7 @@ public class StatisticianPlugin extends JavaPlugin {
 	private PlayerData _playerData;
 	private EDHPlayer eventDataHandlerPlayer;
 	private PermissionHandler permissions;
-	private BukkitContrib bukkitContrib;
+	//private gestspout getSpout;
 
 	@Override
 	public void onDisable() {
@@ -93,10 +93,10 @@ public class StatisticianPlugin extends JavaPlugin {
 			Log.ConsoleLog("Permissions Plugin Not Found - All stats will be recorded");
 		}
 		
-		if (!loadBukkitContrib()) {
+		/*if (!loadSpoutAPI()) {
 			getPluginLoader().disablePlugin(this);
 			return;
-		}
+		}*/
 		
 		StatDB.getDB().callStoredProcedure("pluginStartup", null);
 		
@@ -147,24 +147,24 @@ public class StatisticianPlugin extends JavaPlugin {
 		return _singleton;
 	}
 	
-	private boolean loadBukkitContrib() {
-		// Load BukkitContrib if available, If Not Unload our packaged version and load it
-		if (this.getServer().getPluginManager().getPlugin("BukkitContrib") != null) {
-			bukkitContrib = (BukkitContrib) getServer().getPluginManager().getPlugin("BukkitContrib");
-			if (bukkitContrib.getDescription().getVersion().compareToIgnoreCase(PackedDependencyVersions.getVesionFor("BukkitContrib")) != 0) {
-				Log.ConsoleLog("WARNING: Your Current ContribBukkit Version = " + bukkitContrib.getDescription().getVersion() 
-						+ " Statistician has ContribBukkit Version = " + PackedDependencyVersions.getVesionFor("BukkitContrib") 
+	/*private boolean loadSpoutAPI() {
+		// Load SpoutAPI if available, If Not Unload our packaged version and load it
+		if (this.getServer().getPluginManager().getPlugin("SpoutAPI") != null) {
+			spoutApi = (SpoutAPI) getServer().getPluginManager().getPlugin("SpoutAPI");
+			if (spoutApi.getDescription().getVersion().compareToIgnoreCase(PackedDependencyVersions.getVesionFor("SpoutAPI")) != 0) {
+				Log.ConsoleLog("WARNING: Your Current ContribBukkit Version = " + spoutApi.getDescription().getVersion() 
+						+ " Statistician has ContribBukkit Version = " + PackedDependencyVersions.getVesionFor("SpoutAPI") 
 						+ " Packed with it");
-				Log.ConsoleLog("WARNING: You are not using the same version of BukkitContrib that is Packaged With Statistician");
-				Log.ConsoleLog("WARNING: if this is intended, ignore this warning. If not please delete BukkitContrib.jar from");
+				Log.ConsoleLog("WARNING: You are not using the same version of SpoutAPI that is Packaged With Statistician");
+				Log.ConsoleLog("WARNING: if this is intended, ignore this warning. If not please delete SpoutAPI.jar from");
 				Log.ConsoleLog("WARNING: your plugins directory and reload Statistician. It will unpack a compatible version of ");
-				Log.ConsoleLog("WARNING: BukkitContrib and automatically install it.");
+				Log.ConsoleLog("WARNING: SpoutAPI and automatically install it.");
 			}
 		} else {
-			Log.ConsoleLog("Could not find BukkitContrib Dependency, unpacking our own and installing...");
+			Log.ConsoleLog("Could not find SpoutAPI Dependency, unpacking our own and installing...");
 			try {
-				InputStream is = getClass().getClassLoader().getResourceAsStream("com/ChaseHQ/Statistician/Dependency/BukkitContrib.jar");
-				File f = new File("plugins/BukkitContrib.jar");
+				InputStream is = getClass().getClassLoader().getResourceAsStream("com/ChaseHQ/Statistician/Dependency/SpoutAPI.jar");
+				File f = new File("plugins/SpoutAPI.jar");
 				OutputStream out = new FileOutputStream(f);
 				byte buf[] = new byte[1024];
 				int len;
@@ -173,29 +173,29 @@ public class StatisticianPlugin extends JavaPlugin {
 				}
 				out.close();
 				is.close();
-				Log.ConsoleLog("BukkitContrib.jar Unloaded preparing to load plugin");
+				Log.ConsoleLog("SpoutAPI.jar Unloaded preparing to load plugin");
 				getServer().getPluginManager().loadPlugin(f);
-				bukkitContrib = (BukkitContrib) getServer().getPluginManager().getPlugin("BukkitContrib");
-				getServer().getPluginManager().enablePlugin(bukkitContrib);
-				if (bukkitContrib == null)
-					throw new Exception("Could not load bukkitContrib Plugin");
+				spoutApi = (SpoutAPI) getServer().getPluginManager().getPlugin("SpoutAPI");
+				getServer().getPluginManager().enablePlugin(spoutApi);
+				if (spoutApi == null)
+					throw new Exception("Could not load spoutApi Plugin");
 			} catch (Exception e) {
-				Log.ConsoleLog("Could not Unpackage or Load BukkitContrib Plugin, Fatal Error, Shutting down");
+				Log.ConsoleLog("Could not Unpackage or Load SpoutAPI Plugin, Fatal Error, Shutting down");
 				return false;
 			}
 		}
 
-		Log.ConsoleLog("BukkitContrib Loaded and Hooked");
+		Log.ConsoleLog("SpoutAPI Loaded and Hooked");
 		return true;
-	}
+	}*/
 	
 	public PlayerData getPlayerData() {
 		return _playerData;
 	}
 	
-	public BukkitContrib getBukkitContrib() {
-		return bukkitContrib;
-	}
+	/*public SpoutAPI getSpoutAPI() {
+		return spoutApi;
+	}*/
 	
 	public boolean permissionToRecordStat(Player player) {
 		if (permissions != null) {
