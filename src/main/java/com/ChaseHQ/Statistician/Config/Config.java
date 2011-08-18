@@ -23,7 +23,7 @@ public class Config {
 	private String _dbUsername = "mc_statistician";
 	private String _dbPassword = "mc_statistician";
 	private int _databaseUpdateTime = 120;
-	private String _databasePrefix = "statistician_";
+	public static String _databasePrefix = "statistician_";
 	
 	private static Config _internalConfig = null;
 	

@@ -1,5 +1,7 @@
 package com.ChaseHQ.Statistician.Database.DataValues;
 
+import com.ChaseHQ.Statistician.Config.Config;
+
 public enum StatDBDataStores {
 	CONFIGURATION ("config"),
 	PLAYER ("players");
@@ -7,7 +9,7 @@ public enum StatDBDataStores {
 	private final String tableName;
 	
 	private StatDBDataStores(String tableName) {
-		this.tableName = tableName;
+		this.tableName = Config._databasePrefix + tableName;
 	}
 	
 	public String getTableName() {

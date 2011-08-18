@@ -34,7 +34,7 @@ public class StatisticianPlugin extends JavaPlugin {
 	private PlayerData _playerData;
 	private EDHPlayer eventDataHandlerPlayer;
 	private PermissionHandler permissions;
-	//private gestspout getSpout;
+	//private getspout getSpout;
 
 	@Override
 	public void onDisable() {
